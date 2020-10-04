@@ -1,7 +1,6 @@
 (ns resuman.handlers
   (:require [resuman.db :as db]))
 
-
 (defn get-users [_]
   {:status 200
    :body (db/get-users db/config)})
