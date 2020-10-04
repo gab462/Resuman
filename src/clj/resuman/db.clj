@@ -4,6 +4,6 @@
 (def config
   {:classname   "org.sqlite.JDBC"
    :subprotocol "sqlite"
-   :subname     "resources/resuman.db"}) ;; FIXME wrong path?
+   :subname     "resources/resuman.db"})
 
-(hugsql/def-db-fns "resuman.sql") ;; FIXME wrong path?
+(hugsql/def-db-fns "resuman.sql")
