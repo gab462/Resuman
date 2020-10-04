@@ -6,7 +6,8 @@
                                                      format-request-middleware
                                                      format-response-middleware]]
             [muuntaja.core :as m]
-            [resuman.db :as db]))
+            [resuman.db :as db]
+            [resuman.routes :refer [ping-route contact-route]]))
 
 (defonce server (atom nil))
 
@@ -14,12 +15,8 @@
   (ring/ring-handler
     (ring/router
       [["/api"
-        ["/ping" {:get (fn [req]
-                         {:status 200
-                          :body {:ping "pong"}})}]
-        ["/users" {:get (fn [req]
-                          {:status 200
-                           :body (db/get-users db/config)})}]]]
+          ping-route
+          contact-route]]
       {:data {:muuntaja m/instance
               :middleware [format-negotiate-middleware
                            format-request-middleware
