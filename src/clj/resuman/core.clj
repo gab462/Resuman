@@ -2,12 +2,17 @@
   (:require [org.httpkit.server :refer [run-server]]
             [reitit.ring :as ring]
             [reitit.ring.middleware.exception :refer [exception-middleware]]
+            [reitit.ring.middleware.parameters :refer [parameters-middleware]]
             [reitit.ring.middleware.muuntaja :refer [format-negotiate-middleware
                                                      format-request-middleware
                                                      format-response-middleware]]
+            [reitit.ring.coercion :refer [coerce-exceptions-middleware
+                                          coerce-request-middleware
+                                          coerce-response-middleware]]
+            [reitit.coercion.schema]
+            [schema.core :as s]
             [muuntaja.core :as m]
-            [resuman.db :as db]
-            [resuman.routes :refer [ping-route contact-route]]))
+            [resuman.routes :refer [ping-route users-route]]))
 
 (defonce server (atom nil))
 
@@ -16,12 +21,17 @@
     (ring/router
       [["/api"
           ping-route
-          contact-route]]
-      {:data {:muuntaja m/instance
-              :middleware [format-negotiate-middleware
+          users-route]]
+      {:data {:coercion reitit.coercion.schema/coercion
+              :muuntaja m/instance
+              :middleware [parameters-middleware
+                           format-negotiate-middleware
                            format-request-middleware
                            exception-middleware
-                           format-response-middleware]}})
+                           format-response-middleware
+                           coerce-exceptions-middleware
+                           coerce-request-middleware
+                           coerce-response-middleware]}})
     (ring/routes
       (ring/redirect-trailing-slash-handler)
       (ring/create-default-handler

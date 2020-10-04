@@ -9,16 +9,15 @@ CREATE TABLE users (
 );
 
 -- :name get-users :? :*
-SELECT * FROM users;
+SELECT ROWID,* FROM users;
 
 -- :name get-user-by-id :? :*
-SELECT * FROM users
+SELECT ROWID,* FROM users
 WHERE ROWID = :id;
 
 -- :name insert-user :insert :*
 INSERT INTO users (name, email)
-VALUES (:name, :email)
-RETURNING ROWID;
+VALUES (:name, :email);
 
 -- :name update-user-by-id :! :1
 UPDATE users
