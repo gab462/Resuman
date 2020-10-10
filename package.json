@@ -1,0 +1,19 @@
+{
+  "name": "resuman",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/gab462/Resuman.git",
+  "author": "Gustavo Araujo Borges <gustavoaraujob1+1@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn build-styles && shadow-cljs watch app",
+    "build-styles": "tailwindcss build resources/tailwind.css -o resources/public/css/main.css"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-refresh": "^0.8.3",
+    "shadow-cljs": "^2.11.5",
+    "tailwindcss": "^1.8.13"
+  }
+}

@@ -1,2 +1,6 @@
 .cpcache
+.shadow-cljs
+node_modules
 resources/resuman.db
+resources/public/js
+resources/public/css
