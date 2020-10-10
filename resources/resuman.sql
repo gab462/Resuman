@@ -8,6 +8,18 @@ CREATE TABLE users (
   linkPicture TEXT
 );
 
+-- :name create-projects-table
+-- :command :execute
+-- :result :raw
+-- :doc Creates projects table
+CREATE TABLE projects (
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  source TEXT NOT NULL,
+  info TEXT,
+  linkPicture TEXT
+);
+
 -- :name get-users :? :*
 SELECT ROWID,* FROM users;
 
