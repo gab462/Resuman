@@ -17,11 +17,6 @@
                    {:status 200
                     :body {:ping "pong"}})}])
 
-(defn dummy []
-  {:status 200
-   :body {:ping "pong"}})
-
-
 (def users-route
   ["/users"
    ["" {:get get-users
