@@ -1,23 +1,23 @@
 (ns resuman.core
-  (:require [ajax.core :refer [GET]]
-            [helix.core :refer [defnc $ <>]]
-            [helix.hooks :as hooks]
+  (:require [helix.core :refer [defnc $ <>]]
             [helix.dom :as d]
             ["react-dom" :as dom]
             [resuman.components.nav :refer [nav]]
-            [resuman.components.profile-side :refer [profile-side]]))
+            [resuman.components.profile-side :refer [profile-side]]
+            [resuman.components.project-list :refer [project-list]]))
 
 (defnc app []
-  (let [[state set-state] (hooks/use-state nil)]
-    (hooks/use-effect
-     :once
-     (GET "http://localhost:4000/api/users"
-          {:handler (fn [response]
-                      (set-state response))}))
-    (<>
-     ($ nav)
-     (d/div {:class '[container pt-4]}
-            ($ profile-side {:users state})))))
+  (d/div {:class '[bg-gray-300]}
+   ($ nav)
+   (d/div {:class '[container pt-4 flex]}
+          ($ profile-side)
+          ($ project-list))))
+
+(defn start []
+  (dom/render ($ app) (js/document.getElementById "app")))
+
+(defn stop []
+  (js/console.log "stop"))
 
 (defn ^:export ^dev/after-load init []
-  (dom/render ($ app) (js/document.getElementById "app")))
+  (start))

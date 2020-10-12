@@ -13,7 +13,8 @@
             [reitit.coercion.schema]
             [schema.core :as s]
             [muuntaja.core :as m]
-            [resuman.routes :refer [ping-route users-route projects-route]]))
+            [resuman.routes :refer [ping-route users-route projects-route]]
+            [resuman.handlers :refer [create-tables]]))
 
 (defonce server (atom nil))
 
@@ -43,7 +44,13 @@
      {:not-found (constantly {:status 404
                               :body "Route not found"})}))))
 
+(defn check-db []
+  (when-not
+    (.exists (clojure.java.io/file "resources/resuman.db"))
+    (create-tables)))
+
 (defn -main []
+  (check-db)
   (println "Server started")
   (run-server app {:port 4000}))
 

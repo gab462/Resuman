@@ -90,3 +90,7 @@
               :project before-deleted}}
       {:status 404
        :body {:error "Unable to delete project"}})))
+
+(defn create-tables []
+  (db/create-users-table db/config)
+  (db/create-projects-table db/config))
