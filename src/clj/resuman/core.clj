@@ -13,34 +13,35 @@
             [reitit.coercion.schema]
             [schema.core :as s]
             [muuntaja.core :as m]
-            [resuman.routes :refer [ping-route users-route]]))
+            [resuman.routes :refer [ping-route users-route projects-route]]))
 
 (defonce server (atom nil))
 
 (def app
   (ring/ring-handler
-    (ring/router
-      [["/api"
-          ping-route
-          users-route]]
-      {:data {:coercion reitit.coercion.schema/coercion
-              :muuntaja m/instance
-              :middleware [[wrap-cors
-                            :access-control-allow-origin [#"http://localhost:4200"]
-                            :access-control-allow-methods [:get :put :post :delete]]
-                           parameters-middleware
-                           format-negotiate-middleware
-                           format-request-middleware
-                           exception-middleware
-                           format-response-middleware
-                           coerce-exceptions-middleware
-                           coerce-request-middleware
-                           coerce-response-middleware]}})
-    (ring/routes
-      (ring/redirect-trailing-slash-handler)
-      (ring/create-default-handler
-        {:not-found (constantly {:status 404
-                                 :body "Route not found"})}))))
+   (ring/router
+    [["/api"
+      ping-route
+      users-route
+      projects-route]]
+    {:data {:coercion reitit.coercion.schema/coercion
+            :muuntaja m/instance
+            :middleware [[wrap-cors
+                          :access-control-allow-origin [#"http://localhost:4200"]
+                          :access-control-allow-methods [:get :put :post :delete]]
+                         parameters-middleware
+                         format-negotiate-middleware
+                         format-request-middleware
+                         exception-middleware
+                         format-response-middleware
+                         coerce-exceptions-middleware
+                         coerce-request-middleware
+                         coerce-response-middleware]}})
+   (ring/routes
+    (ring/redirect-trailing-slash-handler)
+    (ring/create-default-handler
+     {:not-found (constantly {:status 404
+                              :body "Route not found"})}))))
 
 (defn -main []
   (println "Server started")

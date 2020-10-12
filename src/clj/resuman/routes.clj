@@ -4,7 +4,13 @@
                                       get-user-by-id
                                       create-user
                                       update-user-by-id
-                                      delete-user-by-id]]))
+                                      delete-user-by-id
+                                      get-projects
+                                      get-projects-by-user
+                                      get-project-by-id
+                                      create-project
+                                      update-project-by-id
+                                      delete-project-by-id]]))
 
 (def ping-route
   ["/ping" {:get (fn [req]
@@ -22,10 +28,34 @@
         :post {:parameters {:body {:name s/Str
                                    :email s/Str}}
                :handler create-user}}]
+   ["/:id"
+    ["" {:parameters {:path {:id s/Int}}
+         :get get-user-by-id
+         :put {:parameters {:body {:name s/Str
+                                   :email s/Str
+                                   :linkPicture s/Str}}
+               :handler update-user-by-id}
+         :delete delete-user-by-id}]
+    ["/projects" {:parameters {:path {:id s/Int}}
+                  :get get-projects-by-user}]]])
+
+(def projects-route
+  ["/projects"
+   ["" {:get get-projects
+        :post {:parameters {:body {:title s/Str
+                                   :description s/Str
+                                   :source s/Str
+                                   :info s/Str
+                                   :thumbnail s/Str
+                                   :user s/Int}}
+               :handler create-project}}]
    ["/:id" {:parameters {:path {:id s/Int}}
-            :get get-user-by-id
-            :put {:parameters {:body {:name s/Str
-                                      :email s/Str
-                                      :linkPicture s/Str}}
-                  :handler update-user-by-id}
-            :delete delete-user-by-id}]])
+            :get get-project-by-id
+            :put {:parameters {:body {:title s/Str
+                                      :description s/Str
+                                      :source s/Str
+                                      :info s/Str
+                                      :thumbnail s/Str
+                                      :user s/Int}}
+                  :handler update-project-by-id}
+            :delete delete-project-by-id}]])
