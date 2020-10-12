@@ -1,20 +1,20 @@
 #+TITLE: Resuman
 Projeto para disciplina de Desenvolvimento de Aplicações para Web, no Centro Universitário FACENS. Por Gustavo Araujo Borges, RA 180995.
 
-* Run
-** API
-   #+BEGIN_SRC shell
-   clj -A:run
-   #+END_SRC
-** Frontend
-   #+BEGIN_SRC shell
-   yarn start
-   #+END_SRC
+** Run
+*** API
+    #+BEGIN_SRC shell
+    clj -A:run
+    #+END_SRC
+*** Frontend
+    #+BEGIN_SRC shell
+    yarn start
+    #+END_SRC
 
-* Reference
-  * [[https://clojure.org/][Clojure]]
-  * [[https://clojurescript.org/][ClojureScript]]
-  * [[https://shadow-cljs.org/][shadow-cljs]]
-  * [[https://developers.google.com/closure/][Google Closure]]
-  * [[https://github.com/lilactown/helix][Helix]]
-  * [[https://tailwindcss.com/][tailwindcss]]
+** Reference
+   * [[https://clojure.org/][Clojure]]
+   * [[https://clojurescript.org/][ClojureScript]]
+   * [[https://shadow-cljs.org/][shadow-cljs]]
+   * [[https://developers.google.com/closure/][Google Closure]]
+   * [[https://github.com/lilactown/helix][Helix]]
+   * [[https://tailwindcss.com/][tailwindcss]]
