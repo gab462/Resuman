@@ -10,15 +10,14 @@
 (defnc app []
   (let [[state set-state] (hooks/use-state nil)]
     (hooks/use-effect
-      :once
-      (GET "http://localhost:4000/api/users"
-        {:handler (fn [response]
-                    (set-state response))}))
-    (js/console.log state)
+     :once
+     (GET "http://localhost:4000/api/users"
+          {:handler (fn [response]
+                      (set-state response))}))
     (<>
-      ($ nav)
-      (d/div {:class '[container pt-4]}
-        ($ profile-side {:users state})))))
+     ($ nav)
+     (d/div {:class '[container pt-4]}
+            ($ profile-side {:users state})))))
 
 (defn ^:export ^dev/after-load init []
   (dom/render ($ app) (js/document.getElementById "app")))
