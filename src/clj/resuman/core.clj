@@ -54,7 +54,6 @@
   (println "Server started")
   (run-server app {:port 4000}))
 
-
 (defn stop-server []
   (when-not (nil? @server)
     (@server :timeout 100)
