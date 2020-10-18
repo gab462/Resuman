@@ -2,26 +2,28 @@
   (:require [ajax.core :refer [GET]]
             [helix.core :refer [defnc <> $]]
             [helix.dom :as d]
-            [helix.hooks :as hooks]))
-
-(defnc project-item [{:keys [project]}]
-  (d/div {:class '[bg-white shadow p-4 mb-4 flex]}
-         (d/img {:src "https://camo.githubusercontent.com/5656aa6cc7a441294142817cf8fdeccb27ebe768/687474703a2f2f692e696d6775722e636f6d2f464958626737562e706e67"
-                 :class '["w-1/3" rounded-lg max-w-xs mr-4]})
-         (d/div {:class '[flex-none]}
-                (d/h2 {:class '[text-xl]} (:title project))
-                (d/p {:class '[text-sm]} (:description project)))))
+            [helix.hooks :as hooks]
+            [resuman.components.project-item :refer [project-item]]
+            [resuman.state :refer [use-app-state]]))
 
 (defnc project-list []
-  (let [[state set-state] (hooks/use-state nil)]
+  (let [[new set-new] (hooks/use-state false)
+        [state actions] (use-app-state)
+        init-projects (:init-projects actions)
+        projects (:projects state)]
     (hooks/use-effect
      :once
-     (GET "http://localhost:4000/api/users/4/projects"
-          {:handler (fn [response]
-                      (set-state response))}))
+     (GET "http://localhost:4000/api/users/1/projects"
+          {:handler init-projects}))
     (d/div {:class '[flex-none "w-2/3"]}
      (map-indexed
       (fn [i project]
         ($ project-item {:key i
                          :project project}))
-      state))))
+      projects)
+     (if (not new)
+       (d/button {:class '[bg-blue-500 text-white text-xl font-bold py-2 px-4 rounded w-full]
+                  :on-click #(set-new (not new))}
+                 "+ Add Project")
+       ; ($ new-project)
+       ))))

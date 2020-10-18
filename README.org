@@ -18,3 +18,9 @@ Projeto para disciplina de Desenvolvimento de Aplicações para Web, no Centro U
    * [[https://developers.google.com/closure/][Google Closure]]
    * [[https://github.com/lilactown/helix][Helix]]
    * [[https://tailwindcss.com/][tailwindcss]]
+
+** TODO:
+   * Add Project
+   * Edit User
+   * Routing
+   * Login / Register
