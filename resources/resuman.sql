@@ -53,7 +53,7 @@ WHERE user = :id;
 
 -- :name insert-project :insert :*
 INSERT INTO projects (title, description, source, info, thumbnail, user)
-VALUES (:title, :description, :source, :info, :thumbnail, :user);
+VALUES (:title, :description, :source, :info, :thumbnail, :user); SELECT last_insert_rowid();
 
 -- :name update-project-by-id :! :1
 UPDATE projects

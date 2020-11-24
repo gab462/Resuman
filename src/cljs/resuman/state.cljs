@@ -17,7 +17,7 @@
 
 (defmethod app-reducer
   ::add-project [state [_ payload]]
-  (assoc state :projects (conj (:projects state) payload)))
+  (assoc state :projects (conj (:projects state) (first payload))))
 
 (defmethod app-reducer
   ::remove-project [state [_ payload]]

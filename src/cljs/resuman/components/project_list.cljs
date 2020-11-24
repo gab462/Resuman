@@ -10,6 +10,7 @@
   (let [[new set-new] (hooks/use-state false)
         [state actions] (use-app-state)
         init-projects (:init-projects actions)
+        add-project (:add-project actions)
         [nproject set-nproject] (hooks/use-state {:user 1
                                                   :source "#"
                                                   :thumbnail ""
@@ -56,11 +57,13 @@
               (d/div {:class '[flex flex-row-reverse]}
                      (d/button {:class '[bg-blue-500 text-white font-bold py-2 px-4 mr-4 rounded]
                                 :on-click
-                                ; (js/console.log (select-keys nproject [:user :title :description]))
                                 #(POST "http://localhost:4000/api/projects"
                                                 {:params (select-keys nproject [:title :description :user :info :source :thumbnail])
                                                  :format :json
                                                  :handler (fn [response]
-                                                            (set-new (not new)))})
+                                                            (set-new (not new))
+                                                            (GET (str "http://localhost:4000/api/projects/" (get (first response) 1))
+                                                                 {:handler add-project})
+                                                            )})
                                 }
                                "Add")))))))

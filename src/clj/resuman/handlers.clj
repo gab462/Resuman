@@ -50,9 +50,9 @@
 (defn create-project
   [{:keys [parameters]}]
   (let [data (:body parameters)]
-    (db/insert-project db/config data)
     {:status 201
-     :body "POST successful"})) ;; FIXME return id on insert?
+     :body (db/insert-project db/config data)
+     }))
 
 (defn get-projects-by-user
   [{:keys [parameters]}]
