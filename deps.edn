@@ -4,5 +4,7 @@
         ring-cors {:mvn/version "0.1.13"}
         http-kit/http-kit {:mvn/version "2.3.0"}
         org.xerial/sqlite-jdbc {:mvn/version "3.32.3.2"}
-        com.layerware/hugsql {:mvn/version "0.5.1"}}
+        com.layerware/hugsql {:mvn/version "0.5.1"}
+        buddy/buddy-auth {:mvn/version "2.2.0"}
+        buddy/buddy-hashers {:mvn/version "1.6.0"}}
  :aliases {:run {:main-opts ["-m" "resuman.core"]}}}

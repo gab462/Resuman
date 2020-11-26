@@ -4,16 +4,13 @@
             ["react-dom" :as dom]
             [resuman.state :refer [app-state initial-state app-reducer]]
             [resuman.components.nav :refer [nav]]
-            [resuman.components.profile-side :refer [profile-side]]
-            [resuman.components.project-list :refer [project-list]]
+            [resuman.components.router :refer [router]]
             [helix.hooks :as hooks]))
 
 (defnc app []
   (d/div {:class '[bg-gray-300]}
    ($ nav)
-   (d/div {:class '[container pt-4 flex]}
-          ($ profile-side)
-          ($ project-list))))
+   ($ router)))
 
 (defnc provided-app []
   (provider {:context app-state

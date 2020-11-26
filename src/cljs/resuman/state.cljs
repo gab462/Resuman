@@ -3,7 +3,8 @@
             [helix.hooks :as hooks]))
 
 (def initial-state {:user nil
-                    :projects []})
+                    :projects []
+                    :page "home"})
 
 (def app-state (create-context nil))
 
@@ -35,6 +36,10 @@
   ::set-user [state [_ payload]]
   (assoc state :user payload))
 
+(defmethod app-reducer
+  ::set-page [state [_ payload]]
+  (assoc state :page payload))
+
 (defn use-app-state []
   (let [[state dispatch] (hooks/use-context app-state)]
     [state {:init-projects (fn [response]
@@ -43,4 +48,5 @@
                          (dispatch [::set-user response]))
             :add-project #(dispatch [::add-project %])
             :remove-project #(dispatch [::remove-project %])
-            :update-project #(dispatch [::update-project %])}]))
+            :update-project #(dispatch [::update-project %])
+            :set-page #(dispatch [::set-page %])}]))
