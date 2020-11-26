@@ -1,5 +1,17 @@
 (ns resuman.handlers
-  (:require [resuman.db :as db]))
+  (:require [resuman.db :as db]
+            [buddy.hashers :refer [encrypt check]]))
+
+(defn login
+  [{:keys [parameters]}]
+  (let [data (:body parameters)
+        username (:username data)
+        password (:password data)
+        user (first (db/get-user-by-username db/config data))]
+    (if (and user (check password (:password user)))
+      {:status 200
+       :body (str (:rowid user))}
+      {:status 404})))
 
 (defn get-users [_]
   {:status 200
@@ -8,9 +20,8 @@
 (defn create-user
   [{:keys [parameters]}]
   (let [data (:body parameters)]
-    (db/insert-user db/config data)
     {:status 201
-     :body "POST successful"})) ;; FIXME return id on insert?
+     :body (db/insert-user db/config (update data :password encrypt))}))
 
 (defn get-user-by-id
   [{:keys [parameters]}]
@@ -51,8 +62,7 @@
   [{:keys [parameters]}]
   (let [data (:body parameters)]
     {:status 201
-     :body (db/insert-project db/config data)
-     }))
+     :body (db/insert-project db/config data)}))
 
 (defn get-projects-by-user
   [{:keys [parameters]}]

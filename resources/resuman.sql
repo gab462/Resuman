@@ -4,24 +4,30 @@
 -- :doc Creates users table
 CREATE TABLE users (
   name TEXT NOT NULL,
+  username TEXT NOT NULL,
   email TEXT NOT NULL,
+  password TEXT NOT NULL,
   linkPicture TEXT
 );
 
 -- :name get-users :? :*
-SELECT rowid,* FROM users;
+SELECT rowid,name,username,email,linkPicture FROM users;
 
 -- :name get-user-by-id :? :*
-SELECT rowid,* FROM users
+SELECT rowid,name,username,email,linkPicture FROM users
 WHERE rowid = :id;
 
+-- :name get-user-by-username :? :*
+SELECT rowid,username,password FROM users
+WHERE username = :username;
+
 -- :name insert-user :insert :*
-INSERT INTO users (name, email)
-VALUES (:name, :email);
+INSERT INTO users (name, username, email, password)
+VALUES (:name, :username, :email, :password); SELECT last_insert_rowid();
 
 -- :name update-user-by-id :! :1
 UPDATE users
-SET name = :name, email = :email, linkPicture = :linkPicture
+SET name = :name, username = :username, email = :email, password = :password, linkPicture = :linkPicture
 WHERE rowid = :id;
 
 -- :name delete-user-by-id :! :1

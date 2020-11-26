@@ -10,7 +10,8 @@
                                       get-project-by-id
                                       create-project
                                       update-project-by-id
-                                      delete-project-by-id]]))
+                                      delete-project-by-id
+                                      login]]))
 
 (def ping-route
   ["/ping" {:get (fn [req]
@@ -21,6 +22,8 @@
   ["/users"
    ["" {:get get-users
         :post {:parameters {:body {:name s/Str
+                                   :username s/Str
+                                   :password s/Str
                                    :email s/Str}}
                :handler create-user}}]
    ["/:id"
@@ -54,3 +57,8 @@
                                       :user s/Int}}
                   :handler update-project-by-id}
             :delete delete-project-by-id}]])
+
+(def login-route
+  ["/login" {:post {:parameters {:body {:username s/Str
+                                        :password s/Str}}
+                    :handler login}}])

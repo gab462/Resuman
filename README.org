@@ -20,7 +20,6 @@ Projeto para disciplina de Desenvolvimento de Aplicações para Web, no Centro U
    * [[https://tailwindcss.com/][tailwindcss]]
 
 ** TODO:
-   * Add Project
    * Edit User
-   * Routing
    * Login / Register
+   * Route Guarding (Token Authentication)
