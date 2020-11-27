@@ -21,5 +21,9 @@ Projeto para disciplina de Desenvolvimento de Aplicações para Web, no Centro U
 
 ** TODO:
    * Edit User
-   * Login / Register
    * Route Guarding (Token Authentication)
+   * Guest view on profile
+
+** FIXME:
+   * Home page
+   * Code cleanup (imports & logging)
