@@ -21,7 +21,6 @@
      :once
      (GET (str "http://localhost:4000/api/users/" (:rowid user) "/projects")
           {:handler init-projects}))
-    (js/console.log user)
     (d/div {:class '[flex-none "w-2/3"]}
      (map-indexed
       (fn [i project]

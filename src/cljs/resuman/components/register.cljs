@@ -7,6 +7,9 @@
 
 (defnc register []
   (let [[state actions] (use-app-state)
+        set-user (:set-user actions)
+        set-loggedin (:set-loggedin actions)
+        set-page (:set-page actions)
         [luser set-luser] (hooks/use-state {:name ""
                                             :username ""
                                             :password ""
@@ -35,7 +38,7 @@
                                                       -target
                                                       -value)))})
                    (d/input {:class '[shadow border border-gray-300 rounded w-full text-xl mt-5 pl-2 h-10]
-                             :type "text"
+                             :type "email"
                              :id "email"
                              :placeholder "name@email.com"
                              :on-change #(set-luser
@@ -45,7 +48,7 @@
                                                       -target
                                                       -value)))})
                    (d/input {:class '[shadow border border-gray-300 rounded w-full text-xl mt-5 pl-2 h-10]
-                             :type "text"
+                             :type "password"
                              :id "password"
                              :placeholder "Password"
                              :on-change #(set-luser
@@ -61,8 +64,10 @@
                                     {:params luser
                                      :format :json
                                      :handler (fn [response]
-                                                (js/console.log response)
-                                                )})
-                             }
+                                                (GET (str "http://localhost:4000/api/users/" (get (first response) 1))
+                                                      {:handler (fn [nuser]
+                                                                  (set-user (first nuser))
+                                                                  (set-loggedin true)
+                                                                  (set-page "profile"))}))})}
                             "Register"
                             ))))))

@@ -45,6 +45,5 @@
                                                                {:handler (fn [nuser]
                                                                            (set-suser (first nuser)))})
                                                           (set-loggedin true)
-                                                          ; (set-page "profile")
-                                                          )})}
+                                                          (set-page "home"))})}
                             "Log In"))))))

@@ -12,9 +12,7 @@
     (d/nav {:class '[py-4 shadow bg-white]}
            (d/div {:class '[container flex]}
                   (d/button {:class '[text-xl text-left block flex-grow]
-                         :on-click (fn []
-                                     (set-page "home")
-                                     (js/console.log state))} "Resuman")
+                         :on-click #(set-page "home")} "Resuman")
                   (if loggedin
                     (<>
                       (d/button {:class '[px-4 py-2 leading-none whitespace-no-wrap]
