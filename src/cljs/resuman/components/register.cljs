@@ -6,4 +6,63 @@
             [resuman.state :refer [use-app-state]]))
 
 (defnc register []
-  (d/p "Register Works!"))
+  (let [[state actions] (use-app-state)
+        [luser set-luser] (hooks/use-state {:name ""
+                                            :username ""
+                                            :password ""
+                                            :email ""})]
+    (d/div {:class '["w-2/3" m-auto bg-white rounded shadow p-6]}
+           (d/p {:class '[text-xl text-left]} "Register")
+           (d/div {:class '[flex-none "w-2/3" m-auto]}
+                   (d/input {:class '[shadow border border-gray-300 rounded w-full text-xl mt-5 pl-2 h-10]
+                             :type "text"
+                             :id "username"
+                             :placeholder "Username"
+                             :on-change #(set-luser
+                                           (assoc luser
+                                                  :username
+                                                  (.. %
+                                                      -target
+                                                      -value)))})
+                   (d/input {:class '[shadow border border-gray-300 rounded w-full text-xl mt-5 pl-2 h-10]
+                             :type "text"
+                             :id "name"
+                             :placeholder "Name"
+                             :on-change #(set-luser
+                                           (assoc luser
+                                                  :name
+                                                  (.. %
+                                                      -target
+                                                      -value)))})
+                   (d/input {:class '[shadow border border-gray-300 rounded w-full text-xl mt-5 pl-2 h-10]
+                             :type "text"
+                             :id "email"
+                             :placeholder "name@email.com"
+                             :on-change #(set-luser
+                                           (assoc luser
+                                                  :email
+                                                  (.. %
+                                                      -target
+                                                      -value)))})
+                   (d/input {:class '[shadow border border-gray-300 rounded w-full text-xl mt-5 pl-2 h-10]
+                             :type "text"
+                             :id "password"
+                             :placeholder "Password"
+                             :on-change #(set-luser
+                                           (assoc luser
+                                                  :password
+                                                  (.. %
+                                                      -target
+                                                      -value)))})
+           (d/div {:class '[flex flex-row-reverse]}
+                  (d/button {:class '[bg-blue-500 text-white font-bold py-2 px-4 mr-4 mt-5 rounded]
+                             :on-click
+                             #(POST "http://localhost:4000/api/users"
+                                    {:params luser
+                                     :format :json
+                                     :handler (fn [response]
+                                                (js/console.log response)
+                                                )})
+                             }
+                            "Register"
+                            ))))))

@@ -12,10 +12,11 @@
 (defnc router []
   (let [[state actions] (use-app-state)
         page (:page state)]
-    (case page
-      "home" ($ home)
-      "login" ($ login)
-      "register" ($ register)
-      "profile" ($ profile)
-      ($ home)
-      )))
+    (d/div {:class '[container pt-4 flex h-screen]}
+           (case page
+             "home" ($ home)
+             "login" ($ login)
+             "register" ($ register)
+             "profile" ($ profile)
+             ($ home)
+             ))))

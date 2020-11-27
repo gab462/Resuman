@@ -8,6 +8,6 @@
             [resuman.components.project-list :refer [project-list]]))
 
 (defnc profile []
-  (d/div {:class '[container pt-4 flex]}
+  (<>
          ($ profile-side)
          ($ project-list)))

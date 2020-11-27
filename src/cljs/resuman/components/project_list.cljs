@@ -11,15 +11,17 @@
         [state actions] (use-app-state)
         init-projects (:init-projects actions)
         add-project (:add-project actions)
-        [nproject set-nproject] (hooks/use-state {:user 1
+        user (:user state)
+        [nproject set-nproject] (hooks/use-state {:user (:rowid user)
                                                   :source "#"
                                                   :thumbnail ""
                                                   :info ""})
         projects (:projects state)]
     (hooks/use-effect
      :once
-     (GET "http://localhost:4000/api/users/1/projects"
+     (GET (str "http://localhost:4000/api/users/" (:rowid user) "/projects")
           {:handler init-projects}))
+    (js/console.log user)
     (d/div {:class '[flex-none "w-2/3"]}
      (map-indexed
       (fn [i project]
