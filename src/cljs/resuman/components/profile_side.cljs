@@ -1,7 +1,5 @@
 (ns resuman.components.profile-side
-  (:require [ajax.core :refer [GET]]
-            [helix.hooks :as hooks]
-            [helix.core :refer [defnc <> $]]
+  (:require [helix.core :refer [defnc]]
             [helix.dom :as d]
             [resuman.state :refer [use-app-state]]))
 

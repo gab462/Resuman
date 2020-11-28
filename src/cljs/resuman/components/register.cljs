@@ -1,6 +1,6 @@
 (ns resuman.components.register
   (:require [ajax.core :refer [GET POST]]
-            [helix.core :refer [defnc <> $]]
+            [helix.core :refer [defnc $]]
             [helix.dom :as d]
             [helix.hooks :as hooks]
             [resuman.state :refer [use-app-state]]))
@@ -68,6 +68,5 @@
                                                       {:handler (fn [nuser]
                                                                   (set-user (first nuser))
                                                                   (set-loggedin true)
-                                                                  (set-page "profile"))}))})}
-                            "Register"
-                            ))))))
+                                                                  (set-page "home"))}))})}
+                            "Register"))))))

@@ -1,13 +1,22 @@
 #+TITLE: Resuman
 Projeto para disciplina de Desenvolvimento de Aplicações para Web, no Centro Universitário FACENS. Por Gustavo Araujo Borges, RA 180995.
 
+** Setup
+   * [[https://java.com/en/download/][Java]]
+   * [[https://nodejs.org/en/][Node.js]]
+   * [[https://www.clojure.org/guides/getting_started][Clojure - Getting Started]] (Seems difficult on Windows)
+   * [[https://classic.yarnpkg.com/en/docs/install/#windows-stable][Yarn - Installation]]
+   * [[https://sqlite.org/download.html][Sqlite - Downloads]] (Needs to add to path on Windows)
+
 ** Run
+   Commands can be run on the project source
 *** API
     #+BEGIN_SRC shell
     clj -A:run
     #+END_SRC
 *** Frontend
     #+BEGIN_SRC shell
+    yarn install
     yarn start
     #+END_SRC
 
@@ -20,10 +29,7 @@ Projeto para disciplina de Desenvolvimento de Aplicações para Web, no Centro U
    * [[https://tailwindcss.com/][tailwindcss]]
 
 ** TODO:
-   * Edit User
-   * Route Guarding (Token Authentication)
+   * More user info
+   * Edit user
+   * Route guarding (token authentication)
    * Guest view on profile
-
-** FIXME:
-   * Home page
-   * Code cleanup (imports & logging)

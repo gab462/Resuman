@@ -1,7 +1,6 @@
 (ns resuman.components.nav
   (:require [helix.core :refer [defnc <>]]
             [helix.dom :as d]
-            [helix.hooks :as hooks]
             [resuman.state :refer [use-app-state]]))
 
 (defnc nav []

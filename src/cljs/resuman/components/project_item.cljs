@@ -1,17 +1,9 @@
 (ns resuman.components.project-item
   (:require [ajax.core :refer [DELETE PUT]]
-            [helix.core :refer [defnc <> $]]
+            [helix.core :refer [defnc <>]]
             [helix.dom :as d]
             [helix.hooks :as hooks]
             [resuman.state :refer [use-app-state]]))
-
-(defnc project-display [{:keys [project]}]
-  (<>
-         (d/img {:src "https://camo.githubusercontent.com/5656aa6cc7a441294142817cf8fdeccb27ebe768/687474703a2f2f692e696d6775722e636f6d2f464958626737562e706e67"
-                 :class '["w-1/3" rounded-lg mr-4]})
-         (d/div {:class '[flex-none "w-2/3"]}
-                (d/h2 {:class '[text-xl]} (:title project))
-                (d/p {:class '[text-sm]} (:description project)))))
 
 (defnc project-item [{:keys [project]}]
   (let [[edit set-edit] (hooks/use-state false)

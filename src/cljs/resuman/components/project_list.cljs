@@ -1,6 +1,6 @@
 (ns resuman.components.project-list
   (:require [ajax.core :refer [GET POST]]
-            [helix.core :refer [defnc <> $]]
+            [helix.core :refer [defnc $]]
             [helix.dom :as d]
             [helix.hooks :as hooks]
             [resuman.components.project-item :refer [project-item]]
@@ -64,7 +64,5 @@
                                                  :handler (fn [response]
                                                             (set-new (not new))
                                                             (GET (str "http://localhost:4000/api/projects/" (get (first response) 1))
-                                                                 {:handler add-project})
-                                                            )})
-                                }
+                                                                 {:handler add-project}))})}
                                "Add")))))))

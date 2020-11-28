@@ -2,7 +2,7 @@
   (:require [helix.core :refer [create-context]]
             [helix.hooks :as hooks]))
 
-(def initial-state {:user "a"
+(def initial-state {:user nil
                     :projects []
                     :page "home"
                     :loggedin false})
