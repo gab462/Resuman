@@ -6,7 +6,7 @@
   "author": "Gustavo Araujo Borges <gustavoaraujob1+1@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build-styles && shadow-cljs watch app",
+    "start": "npm run-script build-styles && shadow-cljs watch app",
     "build-styles": "tailwindcss build resources/tailwind.css -o resources/public/css/main.css"
   },
   "dependencies": {

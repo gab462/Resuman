@@ -1,4 +1,6 @@
 .cpcache
+.clj-kondo
+.lsp
 .shadow-cljs
 node_modules
 resources/resuman.db
